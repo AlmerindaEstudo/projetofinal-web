@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comprar Produto - Controle Estoque</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="static/comprarproduto.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item">Cadastrar Produto</a>
+      <a href="#" class="menu-item">Produtos Cadastrados</a>
+      <a href="#" class="menu-item">Estoque</a>
+      <a href="#" class="menu-item active">Comprar Produtos</a>
+      <a href="#" class="menu-item">Vender Produto</a>
+      <a href="#" class="menu-item">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Comprar Produto</h2>
+
+    <form class="purchase-form">
+      <label for="vendedor">Vendedor:</label>
+      <input type="text" id="vendedor" name="vendedor" placeholder="Nome do vendedor" required />
+
+      <label for="gerente">Gerente:</label>
+      <input type="text" id="gerente" name="gerente" placeholder="Nome do gerente" required />
+
+      <label for="empresa">Empresa:</label>
+      <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" required />
+
+      <label for="produto">Produto:</label>
+      <select id="produto" name="produto" required>
+        <option value="" disabled selected>Selecione o produto</option>
+        <option value="produto1">Produto 1</option>
+        <option value="produto2">Produto 2</option>
+        <option value="produto3">Produto 3</option>
+      </select>
+
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade" min="1" required />
+
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" required />
+
+      <button type="submit" class="btn-primary">Comprar</button>
+    </form>
+  </main>
+</body>
+</html>

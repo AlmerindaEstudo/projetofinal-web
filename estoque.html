@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estoque - Controle Estoque</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="static/estoque.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item">Cadastrar Produto</a>
+      <a href="#" class="menu-item">Produtos Cadastrados</a>
+      <a href="#" class="menu-item active">Estoque</a>
+      <a href="#" class="menu-item">Comprar Produtos</a>
+      <a href="#" class="menu-item">Vender Produto</a>
+      <a href="#" class="menu-item">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Estoque</h2>
+
+    <section class="aviso-vencimento">
+      <h3>DATA DE VENCIMENTO</h3>
+      <p><span class="linha-vermelha aviso-linha"></span> Produtos que estão com a linha vermelha é que estão vencidos.</p>
+      <p><span class="linha-amarela aviso-linha"></span> Produtos que estão com a linha amarela é que estão perto de vencer.</p>
+      <p><span class="linha-verde aviso-linha"></span> Produtos que estão com a linha verde é que estão longe da data de vencimento.</p>
+    </section>
+
+    <table class="estoque-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Data de Vencimento</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="linha-vermelha">
+          <td>Categoria 1</td>
+          <td>Produto Vencido</td>
+          <td>10</td>
+          <td>01/01/2023</td>
+          <td>
+            <button class="btn-buy">Comprar</button>
+            <button class="btn-sell">Vender</button>
+          </td>
+        </tr>
+        <tr class="linha-amarela">
+          <td>Categoria 2</td>
+          <td>Produto Quase Vencendo</td>
+          <td>50</td>
+          <td>15/04/2026</td>
+          <td>
+            <button class="btn-buy">Comprar</button>
+            <button class="btn-sell">Vender</button>
+          </td>
+        </tr>
+        <tr class="linha-verde">
+          <td>Categoria 3</td>
+          <td>Produto Longe do Vencimento</td>
+          <td>100</td>
+          <td>31/12/2026</td>
+          <td>
+            <button class="btn-buy">Comprar</button>
+            <button class="btn-sell">Vender</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
