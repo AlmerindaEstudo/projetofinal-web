@@ -1,0 +1,83 @@
+
+/* CONTEÚDO */
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.main-content h2 {
+  margin-bottom: 25px;
+  color: #2f6335;
+}
+
+/* FORM */
+.form {
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #8fb96a;
+  outline: none;
+}
+
+/* BOTÃO */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #6fa34f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #5c8a41;
+}
+.form h3 {
+  margin: 20px 0 10px;
+  color: #2f6335;
+}
+
+/* GRID MAIS BONITO */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* inputs maiores */
+.grid input {
+  padding: 12px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

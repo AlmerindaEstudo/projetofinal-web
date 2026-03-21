@@ -1,0 +1,91 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+  background: #fff;
+  color: #2f6335;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #d9e9b6;
+  width: 220px;
+  height: 100vh;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #c4d499;
+}
+
+.logo-icon {
+  width: 30px;
+  height: 30px;
+  stroke: #2f6335;
+}
+
+.logo h1 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2f6335;
+  letter-spacing: 0.07em;
+  font-family: 'Roboto Slab', serif;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #b4dca0;
+  padding: 8px 14px;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2f6335;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.menu-item:hover {
+  background-color: #a0cb8d;
+}
+
+.menu-item.active {
+  background-color: #9ccd7d;
+}
+
+/* Ícones */
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke: #2f6335;
+  stroke-width: 2;
+  fill: none;
+}

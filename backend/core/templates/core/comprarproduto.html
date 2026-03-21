@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprar Produto</title>
+
+  <link rel="stylesheet" href="{% static 'core/comprarproduto.css' %}">
+  <link rel="stylesheet" href="{% static 'core/base.css' %}" />
+</head>
+
+<body>
+<aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+
+    <nav class="menu">
+
+      <a href="/fornecedor/" class="menu-item">
+        <!-- icone -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <path d="M3 4h18v16H3z"/>
+        </svg>
+        Cadastrar Produto
+      </a>
+
+      <a href="/estoque/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="3" y="7" width="18" height="10"/>
+        </svg>
+        Vendidos
+      </a>
+
+      <a href="/vender/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="3" y="6" width="18" height="12"/>
+        </svg>
+        Vender
+      </a>
+
+      <a href="/comprar/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="4" y="7" width="16" height="10"/>
+        </svg>
+        Comprar Produtos
+      </a>
+
+    </nav>
+  </aside>
+
+
+<!-- CONTEÚDO -->
+<main class="main-content">
+
+  <h2>Comprar Produto</h2>
+
+  <div class="container-compra">
+
+    <!-- FORM -->
+    <form id="formCompra" class="card">
+
+      <div class="field">
+        <label>Vendedor</label>
+        <input type="text" id="vendedor" required>
+      </div>
+
+      <div class="field">
+        <label>Produto</label>
+        <select id="produto" required></select>
+      </div>
+
+      <div class="field">
+        <label>Quantidade</label>
+        <input type="number" id="quantidade" min="1" required>
+      </div>
+
+      <div class="field">
+        <label>Data</label>
+        <input type="date" id="data" required>
+      </div>
+
+      <div class="total-box">
+        <span>Total</span>
+        <strong id="valorTotal">R$ 0,00</strong>
+      </div>
+
+      <button type="submit" class="btn-buy">Confirmar Compra</button>
+
+    </form>
+
+    <!-- INFO PRODUTO -->
+    <div id="infoProduto" class="card hidden">
+
+      <h3>Detalhes do Produto</h3>
+
+      <p><strong>Fornecedor:</strong> <span id="infoFornecedor"></span></p>
+      <p><strong>Preço:</strong> <span id="infoPreco"></span></p>
+      <p><strong>Disponível:</strong> <span id="infoQuantidade"></span></p>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+let produtos = [];
+let produtoSelecionado = null;
+
+// CSRF
+function getCSRFToken() {
+  return document.cookie.split('; ')
+    .find(row => row.startsWith('csrftoken'))
+    ?.split('=')[1];
+}
+
+// 🔥 CARREGAR PRODUTOS DO FORNECEDOR
+fetch("/api/produtos-fornecedor/")
+.then(res => res.json())
+.then(data => {
+  produtos = data;
+
+  const select = document.getElementById("produto");
+  select.innerHTML = '<option disabled selected>Selecione</option>';
+
+  data.forEach(p => {
+    const option = document.createElement("option");
+    option.value = p.id;
+    option.textContent = p.nome_produto;
+    select.appendChild(option);
+  });
+});
+
+// 🔥 AO SELECIONAR PRODUTO → MOSTRAR INFO AUTOMATICAMENTE
+document.getElementById("produto").addEventListener("change", function() {
+
+  produtoSelecionado = produtos.find(p => p.id == this.value);
+
+  if (!produtoSelecionado) return;
+
+  // 🔥 MOSTRAR DADOS
+  document.getElementById("infoFornecedor").textContent =
+    produtoSelecionado.nome_fornecedor;
+
+  document.getElementById("infoPreco").textContent =
+    "R$ " + parseFloat(produtoSelecionado.preco_compra)
+      .toFixed(2).replace('.', ',');
+
+  const estoqueEl = document.getElementById("infoQuantidade");
+  estoqueEl.textContent = produtoSelecionado.quantidade_disponivel;
+
+  // 🔥 ALERTA VISUAL
+  if (produtoSelecionado.quantidade_disponivel < 10) {
+    estoqueEl.style.color = "red";
+  } else {
+    estoqueEl.style.color = "green";
+  }
+
+  document.getElementById("infoProduto").classList.remove("hidden");
+
+  calcularTotal();
+});
+
+// 🔥 CALCULAR TOTAL AUTOMATICAMENTE
+document.getElementById("quantidade").addEventListener("input", calcularTotal);
+
+function calcularTotal() {
+  const qtd = document.getElementById("quantidade").value;
+
+  if (!produtoSelecionado || !qtd) {
+    document.getElementById("valorTotal").textContent = "R$ 0,00";
+    return;
+  }
+
+  const total = produtoSelecionado.preco_compra * qtd;
+
+  document.getElementById("valorTotal").textContent =
+    "R$ " + total.toFixed(2).replace('.', ',');
+}
+
+// 🔥 ENVIAR COMPRA
+document.getElementById("formCompra").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const compra = {
+    vendedor: document.getElementById("vendedor").value,
+    produto_fornecedor: document.getElementById("produto").value,
+    quantidade: document.getElementById("quantidade").value,
+    data: document.getElementById("data").value,
+  };
+
+  fetch("/api/comprar-produto/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken()
+    },
+    body: JSON.stringify(compra)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.erro) {
+      alert(data.erro);
+    } else {
+      alert("Compra realizada com sucesso!");
+      location.reload();
+    }
+  });
+});
+</script>
+
+</body>
+</html>

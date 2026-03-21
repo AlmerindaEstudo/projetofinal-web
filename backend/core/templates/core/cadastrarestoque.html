@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastrar Estoque - Controle Estoque</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="static/cadastrarestoque.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item active">Cadastrar Produto</a>
+      <a href="#" class="menu-item">Produtos Cadastrados</a>
+      <a href="#" class="menu-item">Estoque</a>
+      <a href="#" class="menu-item">Comprar Produtos</a>
+      <a href="#" class="menu-item">Vender Produto</a>
+      <a href="#" class="menu-item">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Cadastrar Produto</h2>
+    <form class="product-form">
+      <label for="categoria">Categoria:</label>
+      <select id="categoria" name="categoria" required>
+        <option value="" disabled selected>----------</option>
+        <option value="categoria1">Categoria 1</option>
+        <option value="categoria2">Categoria 2</option>
+        <option value="categoria3">Categoria 3</option>
+      </select>
+
+      <label for="nome-produto">Nome do produto:</label>
+      <input
+        type="text"
+        id="nome-produto"
+        name="nome-produto"
+        placeholder="Nome do produto"
+        required
+      />
+
+      <label for="descricao-produto">Descrição do produto:</label>
+      <textarea
+        id="descricao-produto"
+        name="descricao-produto"
+        placeholder="Descrição do produto"
+        rows="6"
+        required
+      ></textarea>
+
+      <div class="buttons">
+        <button type="submit" class="btn-primary">Concluir</button>
+        <button type="button" class="btn-secondary">Comprar produto</button>
+      </div>
+    </form>
+
+    <footer class="footer">
+      © Copyright 2021
+    </footer>
+  </main>
+</body>
+</html>

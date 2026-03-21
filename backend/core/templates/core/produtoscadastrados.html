@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos Cadastrados - Controle Estoque</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="static/produtoscadastrados.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item">Cadastrar Produto</a>
+      <a href="#" class="menu-item active">Produtos Cadastrados</a>
+      <a href="#" class="menu-item">Estoque</a>
+      <a href="#" class="menu-item">Comprar Produtos</a>
+      <a href="#" class="menu-item">Vender Produto</a>
+      <a href="#" class="menu-item">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Produtos Cadastrados</h2>
+
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Nome do Produto</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Categoria 1</td>
+          <td>Produto A</td>
+          <td>Descrição do produto A</td>
+          <td>100</td>
+          <td>
+            <button class="btn-edit">Editar</button>
+            <button class="btn-delete">Excluir</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Categoria 2</td>
+          <td>Produto B</td>
+          <td>Descrição do produto B</td>
+          <td>45</td>
+          <td>
+            <button class="btn-edit">Editar</button>
+            <button class="btn-delete">Excluir</button>
+          </td>
+        </tr>
+        <!-- Exemplo adicional -->
+        <tr>
+          <td>Categoria 3</td>
+          <td>Produto C</td>
+          <td>Descrição do produto C</td>
+          <td>200</td>
+          <td>
+            <button class="btn-edit">Editar</button>
+            <button class="btn-delete">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+</body>
+</html>

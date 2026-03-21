@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Relatório - Controle Estoque</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="static/relatorio.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <svg
+        class="logo-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2f6335"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      <h1>CONTROLE ESTOQUE</h1>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item">Cadastrar Produto</a>
+      <a href="#" class="menu-item">Produtos Cadastrados</a>
+      <a href="#" class="menu-item">Estoque</a>
+      <a href="#" class="menu-item">Comprar Produtos</a>
+      <a href="#" class="menu-item">Vender Produto</a>
+      <a href="#" class="menu-item active">Relatório</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h2>Relatório de Movimentações</h2>
+
+    <table class="relatorio-table">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Vendedor</th>
+          <th>Empresa</th>
+          <th>Produto</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Venda</td>
+          <td>João Silva</td>
+          <td>Empresa A</td>
+          <td>Produto X</td>
+          <td>Descrição do produto X</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>Compra</td>
+          <td>Maria Souza</td>
+          <td>Empresa B</td>
+          <td>Produto Y</td>
+          <td>Descrição do produto Y</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Venda</td>
+          <td>Carlos Lima</td>
+          <td>Empresa C</td>
+          <td>Produto Z</td>
+          <td>Descrição do produto Z</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
