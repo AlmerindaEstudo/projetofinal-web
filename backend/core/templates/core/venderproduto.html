@@ -12,10 +12,6 @@
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet"/>
 
-
-
-
-
 </head>
 
 <body>
@@ -79,10 +75,11 @@
 
 <main class="main-content">
 
-  <h2>Venda</h2>
+  <h2>Vender Produto</h2>
 
-  <div class="container">
+  <div class="container-compra">
 
+    <!-- FORM -->
     <form id="formVenda" class="card">
 
       <div class="field">
@@ -105,14 +102,18 @@
         <input type="number" id="quantidade" min="1" required>
       </div>
 
-      <button type="submit">Vender</button>
+      <button type="submit" class="btn-buy">Confirmar Venda</button>
 
     </form>
 
+    <!-- INFO PRODUTO -->
     <div id="infoProduto" class="card hidden">
-      <h3>Estoque</h3>
-      <p>Preço: <span id="infoPreco"></span></p>
-      <p>Disponível: <span id="infoQuantidade"></span></p>
+
+      <h3>Detalhes do Produto</h3>
+
+      <p><strong>Preço:</strong> <span id="infoPreco"></span></p>
+      <p><strong>Disponível:</strong> <span id="infoQuantidade"></span></p>
+
     </div>
 
   </div>
