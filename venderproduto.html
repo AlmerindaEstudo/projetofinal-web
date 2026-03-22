@@ -1,17 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vender Produto - Controle Estoque</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="static/venderproduto.css" />
+  <meta charset="UTF-8">
+  <title>Vender Produto</title>
+
+  
+  <link rel="stylesheet" href="{% static 'core/venderproduto.css' %}">
+  <link rel="stylesheet" href="{% static 'core/base.css' %}" />
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet"/>
+
 </head>
+
 <body>
-  <aside class="sidebar">
+
+ <aside class="sidebar">
     <div class="logo">
       <svg
         class="logo-icon"
@@ -26,41 +31,170 @@
         <line x1="22" y1="2" x2="11" y2="13"></line>
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
       </svg>
+
       <h1>CONTROLE ESTOQUE</h1>
     </div>
+
     <nav class="menu">
-      <a href="#" class="menu-item">Cadastrar Produto</a>
-      <a href="#" class="menu-item">Produtos Cadastrados</a>
-      <a href="#" class="menu-item">Estoque</a>
-      <a href="#" class="menu-item">Comprar Produtos</a>
-      <a href="#" class="menu-item active">Vender Produto</a>
-      <a href="#" class="menu-item">Relatório</a>
+
+      <a href="/fornecedor/" class="menu-item">
+        <!-- icone -->
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <path d="M3 4h18v16H3z"/>
+        </svg>
+        Cadastrar Produto
+      </a>
+
+      <a href="/estoque/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="3" y="7" width="18" height="10"/>
+        </svg>
+        Vendidos
+      </a>
+
+      <a href="/vender/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="3" y="6" width="18" height="12"/>
+        </svg>
+        Vender
+      </a>
+
+      <a href="/comprar/" class="menu-item">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke="#2f6335" stroke-width="2">
+          <rect x="4" y="7" width="16" height="10"/>
+        </svg>
+        Comprar Produtos
+      </a>
+
     </nav>
   </aside>
 
-  <main class="main-content">
-    <h2>Vender Produto</h2>
+<main class="main-content">
 
-    <form class="sell-form">
-      <label for="vendedor">Vendedor:</label>
-      <input type="text" id="vendedor" name="vendedor" placeholder="Nome do vendedor" required />
+  <h2>Vender Produto</h2>
 
-      <label for="gerente">Gerente:</label>
-      <input type="text" id="gerente" name="gerente" placeholder="Nome do gerente" required />
+  <div class="container-compra">
 
-      <label for="produto">Produto:</label>
-      <select id="produto" name="produto" required>
-        <option value="" disabled selected>Selecione o produto</option>
-        <option value="produto1">Produto 1</option>
-        <option value="produto2">Produto 2</option>
-        <option value="produto3">Produto 3</option>
-      </select>
+    <!-- FORM -->
+    <form id="formVenda" class="card">
 
-      <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade" min="1" required />
+      <div class="field">
+        <label>Cliente</label>
+        <input type="text" id="cliente" required>
+      </div>
 
-      <button type="submit" class="btn-primary">Vender Produto</button>
+      <div class="field">
+        <label>Telefone</label>
+        <input type="text" id="telefone" required>
+      </div>
+
+      <div class="field">
+        <label>Produto</label>
+        <select id="produto" required></select>
+      </div>
+
+      <div class="field">
+        <label>Quantidade</label>
+        <input type="number" id="quantidade" min="1" required>
+      </div>
+
+      <button type="submit" class="btn-buy">Confirmar Venda</button>
+
     </form>
-  </main>
+
+    <!-- INFO PRODUTO -->
+    <div id="infoProduto" class="card hidden">
+
+      <h3>Detalhes do Produto</h3>
+
+      <p><strong>Preço:</strong> <span id="infoPreco"></span></p>
+      <p><strong>Disponível:</strong> <span id="infoQuantidade"></span></p>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+let produtos = [];
+let produtoSelecionado = null;
+
+// CSRF (Django)
+function getCSRFToken() {
+  return document.cookie.split('; ')
+    .find(row => row.startsWith('csrftoken'))
+    ?.split('=')[1];
+}
+
+// 🔥 BUSCAR PRODUTOS DO ESTOQUE
+fetch("/api/produtos/")
+.then(res => res.json())
+.then(data => {
+  produtos = data;
+
+  const select = document.getElementById("produto");
+  select.innerHTML = '<option disabled selected>Selecione</option>';
+
+  data.forEach(p => {
+    const option = document.createElement("option");
+    option.value = p.id;
+    option.textContent = p.nome;
+    select.appendChild(option);
+  });
+});
+
+// 🔥 MOSTRAR INFO DO PRODUTO
+document.getElementById("produto").addEventListener("change", function() {
+
+  produtoSelecionado = produtos.find(p => p.id == this.value);
+
+  if (!produtoSelecionado) return;
+
+  document.getElementById("infoPreco").textContent =
+    "R$ " + parseFloat(produtoSelecionado.preco)
+      .toFixed(2).replace('.', ',');
+
+  document.getElementById("infoQuantidade").textContent =
+    produtoSelecionado.quantidade;
+
+  document.getElementById("infoProduto").classList.remove("hidden");
+});
+
+// 🔥 ENVIAR VENDA (AGORA FUNCIONA)
+document.getElementById("formVenda").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const venda = {
+    nome_cliente: document.getElementById("cliente").value,
+    telefone: document.getElementById("telefone").value,
+    produto: document.getElementById("produto").value,
+    quantidade: document.getElementById("quantidade").value
+  };
+
+  fetch("/api/vender-produto/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCSRFToken()
+    },
+    body: JSON.stringify(venda)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.erro) {
+      alert(data.erro);
+    } else {
+      alert("Venda realizada com sucesso!");
+      location.reload();
+    }
+  });
+});
+</script>
+
 </body>
 </html>
