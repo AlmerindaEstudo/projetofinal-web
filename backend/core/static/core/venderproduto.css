@@ -1,160 +1,64 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Roboto Slab', serif;
-  background: #fff;
-  color: #2f6335;
-  height: 100vh;
+/* LAYOUT IGUAL AO COMPRAR */
+.container-compra {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  gap: 30px;
 }
-
-/* Sidebar */
-.sidebar {
-  background-color: #d9e9b6;
-  width: 220px;
-  height: 100vh;
-  padding: 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #c4d499;
-}
-
-.logo-icon {
-  width: 30px;
-  height: 30px;
-  stroke: #2f6335;
-}
-
-.logo h1 {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #2f6335;
-  letter-spacing: 0.07em;
-  font-family: 'Roboto Slab', serif;
-}
-
-/* Menu */
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #b4dca0;
-  padding: 8px 14px;
-  border-radius: 3px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #2f6335;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  user-select: none;
-}
-
-.menu-item:hover {
-  background-color: #a0cb8d;
-}
-
-.menu-item.active {
-  background-color: #9ccd7d;
-}
-
-/* Ícones */
-.icon {
-  width: 20px;
-  height: 20px;
-  stroke: #2f6335;
-  stroke-width: 2;
-  fill: none;
-}
-
-
-/* Conteúdo principal */
 .main-content {
   padding: 40px 48px;
-  flex-grow: 1;
-  max-width: 100%;
-  overflow-y: auto;
+  margin-left: 40px;
 }
-
 .main-content h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  user-select: none;
+  margin-bottom: 40px; /* aumenta a distância */
+}
+/* CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  width: 350px;
 }
 
-/* Formulário de venda */
-.sell-form {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* CAMPOS */
+.field {
+  margin-bottom: 15px;
 }
 
-.sell-form label {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 6px;
-  user-select: none;
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  color: #374151;
 }
 
-.sell-form input,
-.sell-form select {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1rem;
-  padding: 10px 14px;
-  border: 1px solid #c4d499;
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5d1;
   border-radius: 6px;
-  color: #2f6335;
-  background: #f9fbe7;
-  transition: border-color 0.2s ease;
 }
 
-.sell-form input:focus,
-.sell-form select:focus {
-  outline: none;
-  border-color: #9ccd7d;
-  background: #f0f5d8;
-}
-
-/* Botão Vender Produto */
-.btn-primary {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 10px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  user-select: none;
-  border: none;
+/* BOTÃO */
+.btn-buy {
+  width: 100%;
+  padding: 10px;
   background-color: #2f6335;
   color: white;
-  transition: background-color 0.2s ease;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.btn-primary:hover {
-  background-color: #244a29;
+.btn-buy:hover {
+  background-color: #244d29;
+}
+
+/* INFO */
+#infoProduto p {
+  margin-bottom: 10px;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
 }
